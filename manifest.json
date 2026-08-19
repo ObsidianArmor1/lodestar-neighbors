@@ -1,6 +1,6 @@
 {
  "format": "lodestar-global-neighbor-pack",
- "version": 1,
+ "version": 2,
  "corpus": "lodestar-1m",
  "rows": 999693,
  "neighborsPerPanorama": 300,
@@ -13690,5 +13690,12 @@
   "table": "master_corpus_v2/neighbor-table-1m",
   "exact": true,
   "note": "top-500 exact table truncated to the shipped K; ranking was float32-refined and verified against brute force"
+ },
+ "headings": {
+  "file": "headings.bin.gz",
+  "bytes": 1973989,
+  "sha256": "e5b8551c4c0ab3b974112f43267959e63092d036e956bcbee3a7f5a1602397cb",
+  "encoding": "uint16 centidegrees, row-aligned with the directory",
+  "note": "each panorama's own spawn heading, so a match can be rendered at the framing the corpus was embedded at - view 0 looks along the road. Per-view vectors were never written, so this is what makes a like-for-like comparison possible without re-extraction."
  }
 }
