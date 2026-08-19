@@ -30,6 +30,21 @@ as the routing table: a panorama's position in it **is** its row, and neighbour
 indices are positions in that same directory. Coordinates are quantised to 1e-6
 degrees (~11 cm).
 
+## Projections
+
+`projection/NNNNN.bin.gz` holds a compact form of every panorama's vector, so
+any two can be compared - not only the 300 the neighbour table stores.
+
+```
+per chunk: 512 x 256 int8 codes, then 512 x float16 scales
+decode:    code * scale, normalise, dot product = cosine estimate
+```
+
+The basis is an uncentred SVD fitted to 200,000 sampled vectors (`projection-
+basis.f32.bin`, 256 x 3840 float32), so inner products are preserved directly
+in the subspace. Measured on rows excluded from the fit: mean absolute error
+0.0145, p95 0.025.
+
 ## Provenance
 
 Vectors are C-RADIOv4-H (`nvidia/C-RADIOv4-H`, revision `0057b339`), four views
